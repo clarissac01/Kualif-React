@@ -5,20 +5,15 @@ import logo from './logo.svg';
 import './DrinkDetail.css'
 
 function DrinkDetail() {
+    let favdrink = JSON.parse(localStorage.getItem('favs'))
     let { id } = useParams()
     const [menu, setMenu] = useState({});
-    const [love, setLove] = useState(false);
+    const [love, setLove] = useState(favdrink != null && favdrink.some(d => d.idDrink === id));
     const [ingredients, setIngredients] = useState([]);
     const ing = [];
 
-    useEffect(() => {
-        let favdrink = JSON.parse(localStorage.getItem('favs'))
-        if (favdrink != null) {
-            if (favdrink.some(d => d.idDrink === menu.idDrink)) {
-                setLove(true)
-            }
-        }
-    }, [])
+    // useEffect(() => {
+    // }, [])
 
 
     function updateLove() {
@@ -36,7 +31,7 @@ function DrinkDetail() {
         else {
             if (favors.some(d => d.idDrink === menu.idDrink)) {
                 setLove(false)
-                favors.pop(menu)
+                favors = favors.filter(d => d.idDrink != menu.idDrink)
                 localStorage.setItem('favs', JSON.stringify(favors))
             } else {
                 setLove(true)
@@ -52,16 +47,16 @@ function DrinkDetail() {
             .then(res => res.json())
             .then(data => {
                 const drink = data.drinks[0];
-                console.log(drink)
                 setMenu(drink);
                 for (let i = 1; i <= 15; i++) {
                     if (drink['strIngredient' + i])
                         ing.push(drink['strMeasure' + i] + drink['strIngredient' + i]);
                 }
                 setIngredients(ing);
-                console.log(ing);
+
             });
     }, []);
+
     return (
         <div>
             <nav className="sticky top-0 navbar p-4">

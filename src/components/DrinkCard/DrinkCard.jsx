@@ -33,7 +33,7 @@ function DrinkCard({ drink }) {
         else {
             if (favors.some(d => d.idDrink === drink.idDrink)) {
                 setLove(false)
-                favors.pop(drink)
+                favors = favors.filter(d => d.idDrink != drink.idDrink)
                 localStorage.setItem('favs', JSON.stringify(favors))
             } else {
                 setLove(true)
