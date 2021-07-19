@@ -1,0 +1,12 @@
+p{
+    color: var(--txt-primary);
+}
+
+.drinkname{
+    color: var(--txt-secondary);
+
+}
+
+.card{
+    background-color: var(--bg-dark-surface);
+}

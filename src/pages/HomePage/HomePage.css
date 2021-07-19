@@ -1,0 +1,7 @@
+.body{
+    background-color: var(--bg-dark-primary);
+}
+
+p{
+    color: var(--txt-primary);
+}

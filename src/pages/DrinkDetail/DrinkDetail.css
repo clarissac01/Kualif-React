@@ -1,0 +1,15 @@
+.titleCol{
+    color: var(--main-brand-color);
+}
+
+.subtitleCol{
+    color: var(--secondary-brand-color);
+}
+
+.navbar{
+    background-color: black;
+}
+
+.heartFilled, .heartOutlined{
+    color: red;
+}
